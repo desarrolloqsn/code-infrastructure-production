@@ -1,0 +1,65 @@
+version: "3.7"
+
+services:
+  ## Infrastructure's Services
+  nginx:
+    container_name: nginx
+    image: nginxproxy/nginx-proxy
+    volumes:
+      - /var/docker/nginx/html:/usr/share/nginx/html
+      - /var/docker/nginx/certs:/etc/nginx/certs
+      - /var/docker/nginx/vhost:/etc/nginx/vhost.d
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx/custom_proxy_settings.conf:/etc/nginx/conf.d/custom_proxy_settings.conf
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    networks:
+      qsn_net:
+        ipv4_address: 192.168.3.70
+
+  letsencrypt:
+    container_name: letsencrypt
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
+    volumes_from:
+      - nginx
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/docker/nginx/acme:/etc/acme.sh
+    environment:
+      - DEFAULT_EMAIL=desarrollo@qsocialnow.com
+      - LETSENCRYPT_HOST=qsocialnow.com,api.qsocialnow.com
+    networks:
+      qsn_net:
+        ipv4_address: 192.168.3.71
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./portainer_data:/data
+    ports:
+      - 5050:9000
+      - 5051:9443
+    environment:
+      - VIRTUAL_HOST=portainer.qsocialnow.com
+      - VIRTUAL_PATH=/
+      - VIRTUAL_PORT=9000
+      - LETSENCRYPT_HOST=portainer.qsocialnow.com
+    networks:
+      qsn_net:
+        ipv4_address: 192.168.3.72
+
+networks:
+  qsn_net:
+    name: qsn_net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.3.0/24"

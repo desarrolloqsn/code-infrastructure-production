@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  principal-web:
+    image: ghcr.io/desarrolloqsn/pagina-qsocial/main/pagina-qsocial:latest
+    container_name: principal-web
+    restart: on-failure
+    ports:
+      - 8080:8080
+    networks:
+      qsn_net:
+        ipv4_address: 192.168.3.49
+
+networks:
+  qsn_net:
+    name: qsn_net
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.3.0/24"
