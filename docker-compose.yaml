@@ -10,6 +10,8 @@ services:
     environment:
       - VIRTUAL_HOST=${HOST_DNS}
       - VIRTUAL_PATH=/
+    volumes:
+      - ./volumes/principal-web:/data
     networks:
       qsn_net:
         ipv4_address: 192.168.3.49
