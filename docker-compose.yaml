@@ -25,6 +25,7 @@ services:
     environment:
       - VIRTUAL_HOST=${HOST_DNS}
       - VIRTUAL_PATH=/mapas
+      - VIRTUAL_DEST=/
     volumes:
       - /home/qsnftp/static-principal-page:/usr/share/nginx/html:ro
     networks:
