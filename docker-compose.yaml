@@ -16,6 +16,21 @@ services:
       qsn_net:
         ipv4_address: 192.168.3.49
 
+  servidor-mapas:
+    image: nginx
+    container_name: servidor-mapas
+    restart: on-failure
+    ports:
+      - 8081:80
+    environment:
+      - VIRTUAL_HOST=${HOST_DNS}
+      - VIRTUAL_PATH=/mapas
+    volumes:
+      - /home/qsnftp/static-principal-page:/usr/share/nginx/html:ro
+    networks:
+      qsn_net:
+        ipv4_address: 192.168.3.50
+
 networks:
   qsn_net:
     name: qsn_net
