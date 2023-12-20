@@ -28,7 +28,6 @@ services:
       - VIRTUAL_DEST=/
     volumes:
       - /home/qsnftp/static-principal-page:/usr/share/nginx/html:ro
-    user: "${USER_FTP}:${GROUP_FTP}"
     networks:
       qsn_net:
         ipv4_address: 192.168.3.50
