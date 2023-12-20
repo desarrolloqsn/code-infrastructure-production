@@ -47,10 +47,10 @@ services:
       - 5050:9000
       - 5051:9443
     environment:
-      - VIRTUAL_HOST=portainer.qsocialnow.com
+      - VIRTUAL_HOST=${PORTAINER_HOST_DNS}
       - VIRTUAL_PATH=/
       - VIRTUAL_PORT=9000
-      - LETSENCRYPT_HOST=portainer.qsocialnow.com
+      - LETSENCRYPT_HOST=${PORTAINER_HOST_DNS}
     networks:
       qsn_net:
         ipv4_address: 192.168.3.72
