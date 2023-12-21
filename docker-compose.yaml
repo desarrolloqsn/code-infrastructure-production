@@ -49,6 +49,7 @@ services:
       - API_AUTH_PORT=3000
       - VIRTUAL_HOST=${API_HOST_DNS}
       - VIRTUAL_PATH=/auth/
+      - LETSENCRYPT_HOST=${API_HOST_DNS}
     ports:
       - 3000:3000
     networks:
