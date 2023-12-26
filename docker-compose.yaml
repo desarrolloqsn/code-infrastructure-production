@@ -159,10 +159,6 @@ services:
     image: ghcr.io/qsn-desarrollo/listening_my_new/main/listening_my_new:latest
     container_name: web_app
     restart: on-failure
-    deploy:
-      resources:
-        limits:
-          cpus: "1"
     environment:
       - PORT=8084
       - REACT_APP_ENDPOINT_API=${API_HOST_DNS}
