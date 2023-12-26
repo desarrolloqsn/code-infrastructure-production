@@ -160,8 +160,8 @@ services:
     container_name: web_app
     restart: on-failure
     environment:
-      - PORT=3000
-      - REACT_APP_ENDPOINT_API=${API_HOST_DNS}
+      # - PORT=3000
+      # - REACT_APP_ENDPOINT_API=${API_HOST_DNS}
       - VIRTUAL_HOST=${HOST_DNS}
       - VIRTUAL_PATH=/app
       - LETSENCRYPT_HOST=${HOST_DNS}
