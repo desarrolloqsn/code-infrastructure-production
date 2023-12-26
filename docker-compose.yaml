@@ -160,14 +160,14 @@ services:
     container_name: web_app
     restart: on-failure
     environment:
-      - PORT=8084
+      - PORT=3000
       - REACT_APP_ENDPOINT_API=${API_HOST_DNS}
       - VIRTUAL_HOST=${HOST_DNS}
       - VIRTUAL_PATH=/app
       - LETSENCRYPT_HOST=${HOST_DNS}
       - NODE_OPTIONS=--max-old-space-size=8192
     ports:
-      - 8084:8084
+      - 3000:3000
     networks:
       qsn_net:
         ipv4_address: 192.168.3.16
