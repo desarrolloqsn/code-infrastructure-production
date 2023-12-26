@@ -167,7 +167,7 @@ services:
       - LETSENCRYPT_HOST=${HOST_DNS}
       - NODE_OPTIONS=--max-old-space-size=8192
     ports:
-      - 3000:3000
+      - 8084:3000
     networks:
       qsn_net:
         ipv4_address: 192.168.3.16
