@@ -22,4 +22,4 @@ jobs:
           port: ${{ secrets.PROD_SSH_PORT }}
           command_timeout: 30m
           script: |
-            sudo update-infra.sh
+            sudo -u qsnroot update-infra.sh
