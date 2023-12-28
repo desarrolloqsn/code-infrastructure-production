@@ -1,0 +1,25 @@
+name: Update production infra
+run-name: "[Production]${{ github.actor }} has made changes on branch ${{ github.ref_name }}"
+on:
+  push:
+    paths:
+      - .env
+      - .github/**/*
+      - docker-compose.yaml
+      - docker-compose.infrastructure.yaml
+
+jobs:
+  update-infra:
+    if: ${{github.event_name}} == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: print out example job
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.PROD_SSH_IP_VM }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          password: ${{ secrets.PROD_SSH_PASSWORD}}
+          port: ${{ secrets.PROD_SSH_PORT }}
+          command_timeout: 30m
+          script: |
+            sudo update-infra.sh

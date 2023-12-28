@@ -170,10 +170,9 @@ services:
     restart: on-failure
     environment:
       - PORT=3000
-      - REACT_APP_ENDPOINT_API=${API_HOST_DNS}
-      - VIRTUAL_HOST=${HOST_DNS}
-      - VIRTUAL_PATH=/app
-      - LETSENCRYPT_HOST=${HOST_DNS}
+      - REACT_APP_ENDPOINT_API=${URL_API}
+      - VIRTUAL_HOST=${VIRTUAL_HOST_APP}
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST_APP}
       - NODE_OPTIONS=--max-old-space-size=8192
     ports:
       - 8084:3000
