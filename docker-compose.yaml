@@ -90,7 +90,7 @@ services:
     container_name: datostest
     restart: on-failure
     environment:
-      - DB_ENGINE=mongodb
+      - DB_ENGINE=mongodb+srv
       - MONGODB_HOST=${MONGODB_HOST_PROD}
       - MONGODB_PORT=${MONGODB_PORT_PROD}
       - MONGODB_USER_REDES=${MONGODB_USER_QSN}
