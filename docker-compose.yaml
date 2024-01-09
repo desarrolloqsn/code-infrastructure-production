@@ -35,6 +35,24 @@ services:
       qsn_net:
         ipv4_address: 192.168.3.50
 
+  mapas-mex:
+    image: nginx
+    container_name: mapas-mex
+    restart: on-failure
+    command: >
+      sh -c "chown nginx:nginx -R /usr/share/nginx/html && nginx -g 'daemon off;'"
+    ports:
+      - 8082:80
+    environment:
+      - VIRTUAL_HOST=${HOST_DNS}
+      - VIRTUAL_PATH=/mapas-mex
+      - VIRTUAL_DEST=/
+    volumes:
+      - ./nginx/autoindex_settings.conf:/etc/nginx/conf.d/autoindex_settings.conf
+    networks:
+      qsn_net:
+        ipv4_address: 192.168.3.51
+
   auth:
     image: ghcr.io/qsn-desarrollo/apiauth/main/apiauth:latest
     container_name: auth
