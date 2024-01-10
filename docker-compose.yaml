@@ -36,11 +36,9 @@ services:
         ipv4_address: 192.168.3.50
 
   mapas-mex:
-    image: nginx
+    image: ghcr.io/desarrolloqsn/mapas-mex/main/mapas-mex:latest
     container_name: mapas-mex
     restart: on-failure
-    command: >
-      sh -c "chown nginx:nginx -R /usr/share/nginx/html && nginx -g 'daemon off;'"
     ports:
       - 8082:80
     environment:
