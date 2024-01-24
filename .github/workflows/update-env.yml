@@ -7,7 +7,7 @@ on:
       - .github/**/*
       - docker-compose.yaml
       - docker-compose.infrastructure.yaml
-      - nginx
+      - nginx/*
 
 jobs:
   update-infra:
